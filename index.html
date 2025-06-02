@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Bookmarks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-section">
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <h2>Welcome Back</h2>
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="login-btn">Sign In</button>
+                
+                <div class="forgot-password">
+                    <a href="#" onclick="alert('Password reset functionality would be implemented here')">Forgot your password?</a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="bookmarks-section">
+            <h2>Quick Bookmarks</h2>
+            
+            <div class="bookmark-category">
+                <h3 class="category-title">🌐 Popular Sites</h3>
+                <div class="bookmark-grid">
+                    <a href="https://www.google.com" class="bookmark-item" target="_blank">
+                        <div class="bookmark-title">Google</div>
+                        <div class="bookmark-desc">Search engine and web services</div>
+                    </a>
+                    <a href="https://www.github.com" class="bookmark-item" target="_blank">
+                        <div class="bookmark-title">GitHub</div>
+                        <div class="bookmark-desc">Code repositories and collaboration</div>
+                    </a>
+                    <a href="https://www.stackoverflow.com" class="bookmark-item" target="_blank">
+                        <div class="bookmark-title">Stack Overflow</div>
+                        <div class="bookmark-desc">Programming Q&A community</div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="bookmark-category">
+                <h3 class="category-title">📚 Learning</h3>
+                <div class="bookmark-grid">
+                    <a href="https://www.coursera.org" class="bookmark-item" target="_blank">
+                        <div class="bookmark-title">Coursera</div>
+                        <div class="bookmark-desc">Online courses and certifications</div>
+                    </a>
+                    <a href="https://www.codecademy.com" class="bookmark-item" target="_blank">
+                        <div class="bookmark-title">Codecademy</div>
+                        <div class="bookmark-desc">Interactive coding lessons</div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="bookmark-category">
+                <h3 class="category-title">🛠️ Tools</h3>
+                <div class="bookmark-grid">
+                    <a href="https://www.figma.com" class="bookmark-item" target="_blank">
+                        <div class="bookmark-title">Figma</div>
+                        <div class="bookmark-desc">Design and prototyping tool</div>
+                    </a>
+                    <a href="https://www.notion.so" class="bookmark-item" target="_blank">
+                        <div class="bookmark-title">Notion</div>
+                        <div class="bookmark-desc">Notes and project management</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="working.js"></script>
+</body>
+</html>

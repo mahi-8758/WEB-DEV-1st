@@ -2,85 +2,155 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Bookmarks</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Scientific Calculator</title>
+    <style>
+    body {
+        background: #f4f4f4;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .calculator {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        width: 400px;
+    }
+    .display {
+        width: 100%;
+        height: 50px;
+        background: #1565c0; /* blue */
+        color: #fff;
+        font-size: 2rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        text-align: right;
+        padding: 0.5rem;
+        box-sizing: border-box;
+    }
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.5rem;
+    }
+    button {
+        padding: 1rem;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 8px;
+        background: #e53965; /* red */
+        color: #fff;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    button.operator {
+        background: #aa6464; /* darker red */
+        color: #fff;
+    }
+    button.equal {
+        background: #c62828; /* even darker red */
+        color: #fff;
+        grid-column: span 2;
+    }
+    button:active {
+        background: #b71c1c;
+    }
+    button.func {
+        background: #e53935; /* red */
+        color: #fff;
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="login-section">
-            <form class="login-form" onsubmit="handleLogin(event)">
-                <h2>Welcome Back</h2>
-                
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                </div>
-                
-                <button type="submit" class="login-btn">Sign In</button>
-                
-                <div class="forgot-password">
-                    <a href="#" onclick="alert('Password reset functionality would be implemented here')">Forgot your password?</a>
-                </div>
-            </form>
-        </div>
-        
-        <div class="bookmarks-section">
-            <h2>Quick Bookmarks</h2>
-            
-            <div class="bookmark-category">
-                <h3 class="category-title">🌐 Popular Sites</h3>
-                <div class="bookmark-grid">
-                    <a href="https://www.google.com" class="bookmark-item" target="_blank">
-                        <div class="bookmark-title">Google</div>
-                        <div class="bookmark-desc">Search engine and web services</div>
-                    </a>
-                    <a href="https://www.github.com" class="bookmark-item" target="_blank">
-                        <div class="bookmark-title">GitHub</div>
-                        <div class="bookmark-desc">Code repositories and collaboration</div>
-                    </a>
-                    <a href="https://www.stackoverflow.com" class="bookmark-item" target="_blank">
-                        <div class="bookmark-title">Stack Overflow</div>
-                        <div class="bookmark-desc">Programming Q&A community</div>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="bookmark-category">
-                <h3 class="category-title">📚 Learning</h3>
-                <div class="bookmark-grid">
-                    <a href="https://www.coursera.org" class="bookmark-item" target="_blank">
-                        <div class="bookmark-title">Coursera</div>
-                        <div class="bookmark-desc">Online courses and certifications</div>
-                    </a>
-                    <a href="https://www.codecademy.com" class="bookmark-item" target="_blank">
-                        <div class="bookmark-title">Codecademy</div>
-                        <div class="bookmark-desc">Interactive coding lessons</div>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="bookmark-category">
-                <h3 class="category-title">🛠️ Tools</h3>
-                <div class="bookmark-grid">
-                    <a href="https://www.figma.com" class="bookmark-item" target="_blank">
-                        <div class="bookmark-title">Figma</div>
-                        <div class="bookmark-desc">Design and prototyping tool</div>
-                    </a>
-                    <a href="https://www.notion.so" class="bookmark-item" target="_blank">
-                        <div class="bookmark-title">Notion</div>
-                        <div class="bookmark-desc">Notes and project management</div>
-                    </a>
-                </div>
-            </div>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="func" onclick="func('sin')">sin</button>
+            <button class="func" onclick="func('cos')">cos</button>
+            <button class="func" onclick="func('tan')">tan</button>
+            <button class="func" onclick="func('log')">log</button>
+            <button class="func" onclick="func('sqrt')">√</button>
+            <button onclick="press('7')">7</button>
+            <button onclick="press('8')">8</button>
+            <button onclick="press('9')">9</button>
+            <button class="operator" onclick="press('/')">÷</button>
+            <button class="func" onclick="press('(')">(</button>
+            <button onclick="press('4')">4</button>
+            <button onclick="press('5')">5</button>
+            <button onclick="press('6')">6</button>
+            <button class="operator" onclick="press('*')">×</button>
+            <button class="func" onclick="press(')')">)</button>
+            <button onclick="press('1')">1</button>
+            <button onclick="press('2')">2</button>
+            <button onclick="press('3')">3</button>
+            <button class="operator" onclick="press('-')">−</button>
+            <button class="func" onclick="press('^')">^</button>
+            <button onclick="press('0')">0</button>
+            <button onclick="press('.')">.</button>
+            <button onclick="clearDisplay()">C</button>
+            <button class="operator" onclick="press('+')">+</button>
+            <button class="equal" onclick="calculate()">=</button>
         </div>
     </div>
+    <script>
+        let display = document.getElementById('display');
+        let current = '';
 
-    <script src="working.js"></script>
+        function press(val) {
+            if (display.innerText === '0' && val !== '.') {
+                current = val;
+            } else {
+                current += val;
+            }
+            display.innerText = current;
+        }
+
+        function clearDisplay() {
+            current = '';
+            display.innerText = '0';
+        }
+
+        function func(name) {
+            if (name === 'sqrt') {
+                current += 'sqrt(';
+            } else if (name === 'log') {
+                current += 'log(';
+            } else {
+                current += name + '(';
+            }
+            display.innerText = current;
+        }
+
+        function calculate() {
+            try {
+                let expr = current
+                    .replace(/÷/g, '/')
+                    .replace(/×/g, '*')
+                    .replace(/−/g, '-')
+                    .replace(/(\d+)\^(\d+)/g, 'Math.pow($1,$2)')
+                    .replace(/sin\(/g, 'Math.sin(')
+                    .replace(/cos\(/g, 'Math.cos(')
+                    .replace(/tan\(/g, 'Math.tan(')
+                    .replace(/log\(/g, 'Math.log10(')
+                    .replace(/sqrt\(/g, 'Math.sqrt(');
+
+                // Replace Math.log10 for browsers that don't support it
+                if (!Math.log10) {
+                    expr = expr.replace(/Math\.log10\(/g, '((Math.log(');
+                    expr = expr.replace(/\)/g, ')/Math.LN10)');
+                }
+
+                let result = eval(expr);
+                display.innerText = result;
+                current = result.toString();
+            } catch {
+                display.innerText = 'Error';
+                current = '';
+            }
+        }
+    </script>
 </body>
 </html>
